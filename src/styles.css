@@ -88,3 +88,12 @@ li {
 	display: block;
 	margin: 0 auto;
 }
+
+.social-logos-container {
+	margin-bottom: 30px;
+}
+
+.social-logo {
+	width: 50px;
+	margin: 0px 20px;
+}
