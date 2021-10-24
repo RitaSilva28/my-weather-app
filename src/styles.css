@@ -1,10 +1,5 @@
 body {
 	font-family: "Ubuntu", sans-serif;
-	background: radial-gradient(
-		circle at 10% 20%,
-		rgb(239, 246, 249) 0%,
-		rgb(206, 239, 253) 90%
-	);
 }
 
 h1 {
@@ -20,6 +15,11 @@ h2 {
 }
 
 h3 {
+	text-align: center;
+	color: #056fc5;
+	font-weight: 400;
+}
+h4 {
 	text-align: center;
 	color: #056fc5;
 	font-weight: 300;
@@ -41,19 +41,20 @@ li {
 
 .container {
 	display: block;
-	margin: 0 auto;
-	max-width: 85%;
+	margin: 10px auto;
+	max-width: 55%;
 }
 
 .app-container {
-	border: 4px solid #056fc5;
+	border: 2px solid #056fc5;
 	border-radius: 15px;
-	box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.2);
-	margin-bottom: 100px;
+	box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
+	margin-bottom: 50px;
+	margin-top: 20px;
 }
 
 #city-input {
-	border: 3px solid #056fc5;
+	border: 2px solid #056fc5;
 }
 .button {
 	font-weight: 600;
@@ -68,6 +69,10 @@ li {
 	color: #056fc5;
 	background-color: #fff;
 	cursor: pointer;
+}
+
+#weather-conditions {
+	color: #056fc5;
 }
 
 .temperatures-container {
