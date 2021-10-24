@@ -92,7 +92,7 @@ function displayData(response) {
     feelsLikeDisplayed.innerHTML = `Feels like ${feelsLike}ºC`;
     windDisplayed.innerHTML = `Wind ${wind} km/h`;
     humidityDisplayed.innerHTML = `Humidity ${humidity}%`;
-    conditionsDisplayed.innerHTML = `Current conditions <h3>${conditions}</h3>`;
+    conditionsDisplayed.innerHTML = `Current conditions: ${conditions}`;
 
 
 
@@ -112,9 +112,9 @@ function displayData(response) {
 
     });
 
-    if (temperature < 20) {
+    if (temperature < 18) {
         isCold()
-    } else if (temperature > 20) {
+    } else if (temperature >= 18) {
         isHot();
     }
 
