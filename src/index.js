@@ -92,7 +92,7 @@ function displayData(response) {
     feelsLikeDisplayed.innerHTML = `Feels like ${feelsLike}ºC`;
     windDisplayed.innerHTML = `Wind ${wind} km/h`;
     humidityDisplayed.innerHTML = `Humidity ${humidity}%`;
-    conditionsDisplayed.innerHTML = `Current conditions: ${conditions}`;
+    conditionsDisplayed.innerHTML = `Current conditions <h3>${conditions}</h3>`;
 
 
 
