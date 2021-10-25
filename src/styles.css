@@ -6,28 +6,23 @@ h1 {
 	text-align: center;
 	margin: 20px 0;
 	text-transform: uppercase;
-	color: #056fc5;
 }
 
 h2 {
 	text-align: center;
-	color: #056fc5;
 }
 
 h3 {
 	text-align: center;
-	color: #056fc5;
 	font-weight: 400;
 }
 h4 {
 	text-align: center;
-	color: #056fc5;
 	font-weight: 300;
 }
 
 h5 {
 	text-align: center;
-	color: #056fc5;
 }
 ul {
 	list-style: none;
@@ -46,7 +41,7 @@ li {
 }
 
 .app-container {
-	border: 2px solid #056fc5;
+	border: 2px solid;
 	border-radius: 15px;
 	box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
 	margin-bottom: 50px;
@@ -54,25 +49,14 @@ li {
 }
 
 #city-input {
-	border: 2px solid #056fc5;
+	border: 2px solid;
 }
 .button {
 	font-weight: 600;
 	color: #fff;
-	background-color: #056fc5;
 	transition: all 200ms ease-in-out;
 	border: 3px solid #056fc5;
 	box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.2);
-}
-
-.button:hover {
-	color: #056fc5;
-	background-color: #fff;
-	cursor: pointer;
-}
-
-#weather-conditions {
-	color: #056fc5;
 }
 
 .temperatures-container {
@@ -81,7 +65,6 @@ li {
 
 .current-temp-image {
 	width: 180px;
-	border: px solid #056fc5;
 }
 
 .current-container {
