@@ -72,7 +72,6 @@ function displayData(response) {
     let humidity = Math.round(response.data.main.humidity);
     let conditions = response.data.weather[0].main;
     let description = response.data.weather[0].description;
-    console.log(temperature, feelsLike, wind, humidity, conditions, description);
 
     let cityDisplayed = document.querySelector("#city-displayed");
     let temperatureDisplayed = document.querySelector("#temperature-displayed");
@@ -132,7 +131,6 @@ function searchCity(response) {
     let apiKey = "dc8dede1ef33bea8aaa397f04b2d3b55";
 
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    console.log(url);
     if (!city) {
         alert("Please insert a City");
     } else {
@@ -149,7 +147,6 @@ function getCurrentLocation(position) {
 
     let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric
   `;
-    console.log(url);
 
     axios.get(url).then(displayData);
 }
@@ -169,7 +166,6 @@ function displayInitialData(position) {
 
     let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric
   `;
-    console.log(url);
 
     axios.get(url).then(displayData);
 }
