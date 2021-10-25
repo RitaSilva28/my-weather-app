@@ -71,7 +71,8 @@ function displayData(response) {
     let wind = Math.round(response.data.wind.speed);
     let humidity = Math.round(response.data.main.humidity);
     let conditions = response.data.weather[0].main;
-    console.log(temperature, feelsLike, wind, humidity, conditions);
+    let description = response.data.weather[0].description;
+    console.log(temperature, feelsLike, wind, humidity, conditions, description);
 
     let cityDisplayed = document.querySelector("#city-displayed");
     let temperatureDisplayed = document.querySelector("#temperature-displayed");
@@ -92,7 +93,7 @@ function displayData(response) {
     feelsLikeDisplayed.innerHTML = `Feels like ${feelsLike}ºC`;
     windDisplayed.innerHTML = `Wind ${wind} km/h`;
     humidityDisplayed.innerHTML = `Humidity ${humidity}%`;
-    conditionsDisplayed.innerHTML = `Current conditions: ${conditions}`;
+    conditionsDisplayed.innerHTML = `Current conditions: ${description.charAt(0).toUpperCase() + description.slice(1)}`;
 
 
 
@@ -113,11 +114,14 @@ function displayData(response) {
     });
 
     displayImage(conditions);
-
-    if (temperature < 18) {
-        isCold()
-    } else if (temperature >= 18) {
-        isHot();
+    if (temperature < 0) {
+        freezingTemperature()
+    } else if (temperature <= 12 && temperature > 0) {
+        coldTemperature()
+    } else if (temperature > 12 && temperature <= 25) {
+        mediumTemperature();
+    } else if (temperature > 25) {
+        hotTemperature();
     }
 
 }
@@ -170,9 +174,12 @@ function displayInitialData(position) {
     axios.get(url).then(displayData);
 }
 
-function isHot() {
 
-    document.body.style.background = "radial-gradient(circle at 10% 20%, rgb(253, 193, 104) 0%, rgb(251, 128, 128) 90%)";
+function hotTemperature() {
+
+    document.body.style.background = "linear-gradient(120deg, #f6d365 0%, #fda085 100%)";
+
+    ;
 
     document.querySelector(".app-container").style.borderColor = "#cd4545";
 
@@ -229,7 +236,62 @@ function isHot() {
 
 }
 
-function isCold() {
+function mediumTemperature() {
+
+    document.body.style.background = "linear-gradient(111.5deg, rgb(228, 247, 255) 21.9%, rgb(255, 216, 194) 92.2%)";
+
+
+    document.querySelector(".app-container").style.borderColor = "#404969";
+
+    let h2 = document.querySelectorAll('h2');
+
+    h2.forEach(element => {
+        element.style.color = "#404969";
+    });
+
+    let h3 = document.querySelectorAll('h3');
+    h3.forEach(element => {
+        element.style.color = "#404969";
+    });
+
+    let h4 = document.querySelectorAll('h4');
+    h4.forEach(element => {
+        element.style.color = "#404969";
+    });
+
+    let h5 = document.querySelectorAll('h5');
+    h5.forEach(element => {
+        element.style.color = "#404969";
+    });
+
+    let button = document.querySelectorAll(".button");
+    button.forEach(element => {
+        element.style.backgroundColor = "#ff7f50";
+        element.style.borderColor = "#ff7f50"
+        element.addEventListener("mouseenter", function (event) {
+
+            event.target.style.color = "#ff7f50";
+            event.target.style.backgroundColor = "#fff";
+
+
+        });
+
+        element.addEventListener("mouseleave", function (event) {
+
+            event.target.style.color = "#fff";
+            event.target.style.backgroundColor = "#ff7f50";
+
+
+        });
+
+    });
+
+    document.querySelector("#city-input").style.borderColor = "#404969";
+}
+
+
+
+function coldTemperature() {
 
 
     document.body.style.background = "radial-gradient(circle at 10% 20%, rgb(239, 246, 249) 0%, rgb(206, 239, 253) 90%)"
@@ -284,6 +346,61 @@ function isCold() {
 
 }
 
+function freezingTemperature() {
+
+    document.body.style.background = "linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)";
+
+    ;
+
+    document.querySelector(".app-container").style.borderColor = "#393e46";
+
+    let h2 = document.querySelectorAll('h2');
+
+    h2.forEach(element => {
+        element.style.color = "#393e46";
+    });
+
+    let h3 = document.querySelectorAll('h3');
+    h3.forEach(element => {
+        element.style.color = "#393e46";
+    });
+
+    let h4 = document.querySelectorAll('h4');
+    h4.forEach(element => {
+        element.style.color = "#929aab";
+    });
+
+    let h5 = document.querySelectorAll('h5');
+    h5.forEach(element => {
+        element.style.color = "#393e46";
+    });
+
+    let button = document.querySelectorAll(".button");
+    button.forEach(element => {
+        element.style.backgroundColor = "#393e46";
+        element.style.borderColor = "#393e46"
+        element.addEventListener("mouseenter", function (event) {
+
+            event.target.style.color = "#393e46";
+            event.target.style.backgroundColor = "#fff";
+
+
+        });
+
+        element.addEventListener("mouseleave", function (event) {
+
+            event.target.style.color = "#fff";
+            event.target.style.backgroundColor = "#393e46";
+
+
+        });
+
+    });
+
+    document.querySelector("#city-input").style.borderColor = "#393e46";
+
+}
+
 function displayImage(conditions) {
 
     let image = document.querySelector("#current-weather-image");
@@ -305,5 +422,7 @@ function displayImage(conditions) {
     }
 
 }
+
+
 
 navigator.geolocation.getCurrentPosition(displayInitialData);
