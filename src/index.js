@@ -112,6 +112,8 @@ function displayData(response) {
 
     });
 
+    displayImage(conditions);
+
     if (temperature < 18) {
         isCold()
     } else if (temperature >= 18) {
@@ -279,6 +281,28 @@ function isCold() {
 
     document.querySelector("#city-input").style.borderColor = "#056fc5";
 
+
+}
+
+function displayImage(conditions) {
+
+    let image = document.querySelector("#current-weather-image");
+    conditions = conditions.toLowerCase();
+    if (conditions === "clear") {
+        image.src = "src/images/1530392_weather_sun_sunny_temperature_icon.png"
+    }
+    if (conditions === "snow") {
+        image.src = "src/images/1530370_weather_clouds_hail_hailstone_snow_icon.png"
+    }
+    if (conditions === "clouds") {
+        image.src = "src/images/cloudy+fog+foggy+weather+icon-1320196634478143974_512.png"
+    }
+    if (conditions === "rain") {
+        image.src = "src/images/1530362_weather_clouds_cloudy_forecast_rain_icon.png"
+    }
+    if (conditions === "thunder") {
+        image.src = "src/images/1530363_weather_clouds_night_storm_icon.png"
+    }
 
 }
 
