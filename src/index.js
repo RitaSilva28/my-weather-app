@@ -45,7 +45,7 @@ function createHour(date) {
         minutes = "0" + minutes;
     }
 
-    let sentence = `${hour}:${minutes}`;
+    let sentence = `Last updated: ${hour}:${minutes}`;
     return sentence;
 }
 
