@@ -64,6 +64,8 @@ displayDate();
 
 
 function displayData(response) {
+    console.log(response.data)
+
 
     let cityName = response.data.name;
     let temperature = Math.round(response.data.main.temp);
@@ -72,6 +74,7 @@ function displayData(response) {
     let humidity = Math.round(response.data.main.humidity);
     let conditions = response.data.weather[0].main;
     let description = response.data.weather[0].description;
+    let icon = response.data.weather[0].icon;
 
     let cityDisplayed = document.querySelector("#city-displayed");
     let temperatureDisplayed = document.querySelector("#temperature-displayed");
@@ -112,7 +115,7 @@ function displayData(response) {
 
     });
 
-    displayImage(conditions);
+    displayImage(icon);
     if (temperature < 0) {
         freezingTemperature()
     } else if (temperature <= 12 && temperature > 0) {
@@ -125,7 +128,7 @@ function displayData(response) {
 
 }
 
-function searchCity(response) {
+function searchCity() {
     let city = document.querySelector("#city-input").value;
 
     let apiKey = "dc8dede1ef33bea8aaa397f04b2d3b55";
@@ -234,7 +237,7 @@ function hotTemperature() {
 
 function mediumTemperature() {
 
-    document.body.style.background = "linear-gradient(111.5deg, rgb(228, 247, 255) 21.9%, rgb(255, 216, 194) 92.2%)";
+    document.body.style.background = "linear-gradient(to top, #fff1eb 0%, #ace0f9 100%)";
 
 
     document.querySelector(".app-container").style.borderColor = "#404969";
@@ -290,7 +293,7 @@ function mediumTemperature() {
 function coldTemperature() {
 
 
-    document.body.style.background = "radial-gradient(circle at 10% 20%, rgb(239, 246, 249) 0%, rgb(206, 239, 253) 90%)"
+    document.body.style.background = "linear-gradient(178deg, rgba(201, 234, 252, 0.51) 14.9%, rgba(139, 192, 216, 0.73) 80%)"
 
     document.querySelector(".app-container").style.borderColor = "#056fc5";
 
@@ -344,7 +347,7 @@ function coldTemperature() {
 
 function freezingTemperature() {
 
-    document.body.style.background = "linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)";
+    document.body.style.background = "linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%)";
 
     ;
 
@@ -397,25 +400,25 @@ function freezingTemperature() {
 
 }
 
-function displayImage(conditions) {
+function displayImage(icon) {
 
     let image = document.querySelector("#current-weather-image");
-    conditions = conditions.toLowerCase();
-    if (conditions === "clear") {
-        image.src = "src/images/1530392_weather_sun_sunny_temperature_icon.png"
-    }
-    if (conditions === "snow") {
-        image.src = "src/images/1530370_weather_clouds_hail_hailstone_snow_icon.png"
-    }
-    if (conditions === "clouds") {
-        image.src = "src/images/cloudy+fog+foggy+weather+icon-1320196634478143974_512.png"
-    }
-    if (conditions === "rain") {
-        image.src = "src/images/1530362_weather_clouds_cloudy_forecast_rain_icon.png"
-    }
-    if (conditions === "thunder") {
-        image.src = "src/images/1530363_weather_clouds_night_storm_icon.png"
-    }
+    image.src = `http://openweathermap.org/img/wn/${icon}@2x.png`
+    // if (conditions === "clear") {
+    //     image.src = "src/images/1530392_weather_sun_sunny_temperature_icon.png"
+    // }
+    // if (conditions === "snow") {
+    //     image.src = "src/images/1530370_weather_clouds_hail_hailstone_snow_icon.png"
+    // }
+    // if (conditions === "clouds") {
+    //     image.src = "src/images/cloudy+fog+foggy+weather+icon-1320196634478143974_512.png"
+    // }
+    // if (conditions === "rain") {
+    //     image.src = "src/images/1530362_weather_clouds_cloudy_forecast_rain_icon.png"
+    // }
+    // if (conditions === "thunder") {
+    //     image.src = "src/images/1530363_weather_clouds_night_storm_icon.png"
+    // }
 
 }
 
