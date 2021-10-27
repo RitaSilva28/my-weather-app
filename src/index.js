@@ -61,10 +61,52 @@ function displayDate() {
 
 displayDate();
 
+function displayForecast(response) {
+    console.log(response.data.daily)
+    let forecastElement = document.querySelector("#forecast");
+
+    let forecastHTML = "";
+    let days = ["Thursday", "Friday", "Saturday", "Sunday", "Monday"]
+
+    days.forEach(function (day) {
+        forecastHTML = forecastHTML + `	
+						<div class="col">
+							<h5 class="week-day">${day}</h5>
+							<img
+								class="weekday-temp-image"
+								src="https://openweathermap.org/img/wn/10d@2x.png"
+								alt="cloudy weather icon"
+							/>
+							<h3 class="weekday-max-temp">23º</h3>
+
+							<h4 class="weekday-min-temp">17º</h4>
+					
+					</div>`;
+    })
+
+
+
+
+
+    forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+
+    let apiKey = "dc8dede1ef33bea8aaa397f04b2d3b55";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}`
+
+    axios.get(apiUrl).then(displayForecast);
+
+
+
+}
 
 
 function displayData(response) {
     console.log(response.data)
+
+    getForecast(response.data.coord);
 
 
     let cityName = response.data.name;
@@ -113,6 +155,8 @@ function displayData(response) {
         temperatureDisplayed.innerHTML = `${Math.round(temperature * 1.8 +32)}ºF`;
         feelsLikeDisplayed.innerHTML = `Feels like ${Math.round(feelsLike * 1.8 +32)}ºF`;
 
+
+
     });
 
     displayImage(icon);
@@ -138,6 +182,7 @@ function searchCity() {
         alert("Please insert a City");
     } else {
         axios.get(url).then(displayData);
+
     }
 
 
@@ -172,6 +217,7 @@ function displayInitialData(position) {
 
     axios.get(url).then(displayData);
 }
+
 
 
 function hotTemperature() {
