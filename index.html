@@ -1,182 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather App</title>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Weather App</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
-      rel="stylesheet"
-    />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+			rel="stylesheet"
+		/>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="/src/styles.css" />
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="/src/styles.css" />
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<h2>Weather Forecast</h2>
+			<h5>
+				Search for other cities to see me change colors depending on the
+				temperature 😎
+			</h5>
 
-  </head>
-  <body>
-    <div class="container">
-      <h2>Weather Forecast</h2>
-      <h5>Search for other cities to see me change colors depending on the temperature 😎 </h5>
+			<div class="app-container p-5">
+				<div class="row">
+					<input
+						type="text"
+						id="city-input"
+						class="col form-control mx-lg-3 mb-2 mb-lg-0"
+						placeholder="Please insert a city (i.e. Paris)"
+					/>
+					<input
+						type="button"
+						id="search-button"
+						class="col-lg-3 me-lg-3 p-1 mb-2 mb-lg-0 rounded button"
+						value="Submit ✅"
+					/>
+					<input
+						type="button"
+						id="current-location-button"
+						class="col-lg-3 me-lg-3 p-1 mb-lg-0 rounded button"
+						value="Current Location 📍"
+					/>
+				</div>
+				<div class="row float-lg-end">
+					<div class="col pt-2 temperatures-container">
+						<div>
+							<input
+								type="button"
+								id="celsius-button"
+								class="rounded button mx-1"
+								value="Cº"
+							/>
+							<input
+								type="button"
+								id="fahrenheit-button"
+								class="rounded button mx-1"
+								value="Fº"
+							/>
+						</div>
+					</div>
+				</div>
 
-      <div class="app-container  p-5">
-        <div class="row">
-          <input type="text" id="city-input" class="col form-control mx-lg-3 mb-2  mb-lg-0" placeholder="Please insert a city (i.e. Paris)" />
-          <input
-            type="button"
-            id="search-button"
-            class="col-lg-3 me-lg-3  p-1 mb-2 mb-lg-0 rounded button"
-            value="Submit ✅"
-          />
-          <input
-            type="button"
-            id="current-location-button"
-            class="col-lg-3 me-lg-3  p-1  mb-lg-0 rounded button"
-            value="Current Location 📍"
-          />
-        </div>
-        <div class="row float-lg-end  ">
-          <div class="col pt-2 temperatures-container ">
-            <div>
-              <input type="button" id="celsius-button" class="rounded button mx-1" value="Cº" />
-              <input type="button" id="fahrenheit-button" class="rounded button mx-1" value="Fº" />
-            </div>
-          </div>
-        </div>
+				<div class="row mt-5">
+					<div class="col">
+						<h2 id="current-day"></h2>
+						<h2 id="current-hour"></h2>
+					</div>
+				</div>
 
-        <div class="row mt-5">
-          <div class="col">
-              <h2 id="current-day" ></h2>
-              <h2 id="current-hour" ></h2>
-          </div>
-           
-        </div>
+				<div class="row current-container mt-3">
+					<h4 class="mb-4" id="weather-conditions"></h4>
 
-        <div class="row current-container mt-3">
-                     
-          <h4 class="mb-4" id="weather-conditions"></h4>
+					<div class="col float-lg-end float-none">
+						<img
+							class="col float-md-end current-temp-image"
+							id="current-weather-image"
+							src=""
+							alt="Sun Image"
+						/>
+					</div>
+					<div class="col">
+						<ul class="float-md-start mt-1">
+							<li>
+								<h2 id="city-displayed"></h2>
+								<h2 id="temperature-displayed"></h2>
+							</li>
+							<li id="feels-displayed"></li>
+							<li id="wind-displayed"></li>
+							<li id="humidity-displayed"></li>
+						</ul>
+					</div>
+				</div>
 
-          <div class="col float-lg-end float-none">
+				<div class="weather-forecast">
+					<div class="row mx-auto mt-5">
+						<div class="col">
+							<h5 class="week-day">Tuesday</h5>
+							<img
+								class="weekday-temp-image"
+								src="https://openweathermap.org/img/wn/10d@2x.png"
+								alt="cloudy weather icon"
+							/>
+							<h3 class="weekday-max-temp">23º</h3>
 
-            
-            <img
-              class="col float-md-end current-temp-image " id="current-weather-image"
-              src=""
-              alt="Sun Image"
-            />
-          </div>
-          <div class="col">
-         <ul class=" float-md-start mt-1">
-           
-           <li><h2 id="city-displayed"></h2> <h2 id="temperature-displayed"></h2>
-           </li>
-              <li id="feels-displayed"></li>
-              <li id="wind-displayed"></li>
-              <li id="humidity-displayed"></li>
-            </ul>
-          </div>
-        </div>
+							<h4 class="weekday-min-temp">17º</h4>
+						</div>
+					</div>
+				</div>
+			</div>
 
-          <div class="row mx-auto mt-5">
-            <div class="col">
-              <h5>Tuesday</h5>
-              <img
-                class="weekday-temp-image"
-                src="https://openweathermap.org/img/wn/10d@2x.png"
-                alt="cloudy weather icon"
-              />
-              <h3>23º</h3>
+			<div class="col text-center social-logos-container">
+				<h5>Open source code by Rita Silva 👩🏻‍💻</h5>
+				<a href="https://github.com/RitaSilva28/my-weather-app.git"
+					><img class="social-logo" src="src/images/github.png" alt=""
+				/></a>
 
-              <h4>17º</h4>
-            </div>
-            <div class="col">
-              <h5>Friday</h5>
-              <img
-                class="weekday-temp-image"
-                src="https://openweathermap.org/img/wn/10d@2x.png"
-                alt="cloudy weather icon"
-              />
-              <h3>20º</h3>
+				<a href="https://www.linkedin.com/in/rita-silva-44584453/">
+					<img class="social-logo" src="src/images/linkedin.png" alt=""
+				/></a>
+			</div>
+		</div>
 
-              <h4>14º</h4>
-            </div>
-            <div class="col">
-              <h5>Saturday</h5>
-              <img
-                class="weekday-temp-image"
-                src="https://openweathermap.org/img/wn/10d@2x.png"
-                alt="cloudy weather icon"
-              />
-              <h3>22º</h3>
-
-              <h4>12º</h4>
-            </div>
-            <div class="col">
-              <h5>Sunday</h5>
-              <img
-                class="weekday-temp-image"
-                src="https://openweathermap.org/img/wn/10d@2x.png"
-                alt="cloudy weather icon"
-              />
-              <h3>21º</h3>
-
-              <h4>16º</h4>
-            </div>
-            <div class="col">
-              <h5>Monday</h5>
-              <img
-                class="weekday-temp-image"
-                src="https://openweathermap.org/img/wn/10d@2x.png"
-                alt="cloudy weather icon"
-              />
-              <h3>20º</h3>
-
-              <h4>13º</h4>
-            </div>
-            <div class="col">
-              <h5>Tuesday</h5>
-              <img
-                class="weekday-temp-image"
-                src="https://openweathermap.org/img/wn/10d@2x.png"
-                alt="cloudy weather icon"
-              />
-              <h3>22º</h3>
-
-              <h4>14º</h4>
-            </div>
-            <div class="col">
-              <h5>Wednesday</h5>
-              <img
-                class="weekday-temp-image"
-                src="https://openweathermap.org/img/wn/10d@2x.png"
-                alt="cloudy weather icon"
-              />
-              <h3>22º</h3>
-
-              <h4>14º</h4>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col text-center social-logos-container">
-          <h5>Open source code by Rita Silva 👩🏻‍💻</h5>
-      <a href="https://github.com/RitaSilva28/my-weather-app.git"><img class="social-logo" src="src/images/github.png" alt=""></a>
-
-      <a  href="https://www.linkedin.com/in/rita-silva-44584453/"> <img class="social-logo" src="src/images/linkedin.png" alt=""></a>
-
-      </div>
-    </div>
-
-    <script defer src="src/index.js"></script>
-  </body>
+		<script defer src="src/index.js"></script>
+	</body>
 </html>
