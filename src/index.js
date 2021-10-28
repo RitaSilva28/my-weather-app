@@ -136,7 +136,7 @@ function displayData(response) {
     let cityName = response.data.name;
     let temperature = Math.round(response.data.main.temp);
     let feelsLike = Math.round(response.data.main.feels_like);
-    let wind = Math.round(response.data.wind.speed);
+    let wind = response.data.wind.speed;
     let humidity = Math.round(response.data.main.humidity);
     let conditions = response.data.weather[0].main;
     let description = response.data.weather[0].description;
@@ -149,10 +149,6 @@ function displayData(response) {
     let humidityDisplayed = document.querySelector("#humidity-displayed");
     let conditionsDisplayed = document.querySelector("#weather-conditions");
 
-    //Convert temperature Buttons // 
-
-    let celsiusButton = document.querySelector("#celsius-button");
-    let farenheitButton = document.querySelector("#fahrenheit-button");
 
     //Data display// 
 
@@ -165,23 +161,8 @@ function displayData(response) {
 
 
 
-    celsiusButton.addEventListener("click", function () {
-        let temperatureDisplayed = document.querySelector("#temperature-displayed");
-
-        temperatureDisplayed.innerHTML = `${temperature}ºC`;
-        feelsLikeDisplayed.innerHTML = `Feels like ${feelsLike}ºC`;
-
-    });
-
-    farenheitButton.addEventListener("click", function () {
-        let temperatureDisplayed = document.querySelector("#temperature-displayed");
-
-        temperatureDisplayed.innerHTML = `${Math.round(temperature * 1.8 +32)}ºF`;
-        feelsLikeDisplayed.innerHTML = `Feels like ${Math.round(feelsLike * 1.8 +32)}ºF`;
 
 
-
-    });
 
     displayImage(icon);
 
