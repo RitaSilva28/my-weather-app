@@ -61,25 +61,49 @@ function displayDate() {
 
 displayDate();
 
+
+function formatDay(timestamp) {
+
+    let date = new Date(timestamp * 1000);
+    let day = date.getDay();
+    let weekDays = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+    ];
+
+    return weekDays[day]
+
+}
+
 function displayForecast(response) {
     console.log(response.data.daily)
     let forecastElement = document.querySelector("#forecast");
 
     let forecastHTML = "";
-    let days = ["Thursday", "Friday", "Saturday", "Sunday", "Monday"]
+    let forecast = response.data.daily
+    forecast.shift();
 
-    days.forEach(function (day) {
+    forecast.forEach(function (forecastDay, index) {
+        let minTemp = Math.round(forecastDay.temp.min);
+        let maxTemp = Math.round(forecastDay.temp.max);
+        let icon = forecastDay.weather[0].icon;
+
         forecastHTML = forecastHTML + `	
 						<div class="col">
-							<h5 class="week-day">${day}</h5>
+							<h5 class="week-day">${formatDay(forecastDay.dt)}</h5>
 							<img
 								class="weekday-temp-image"
-								src="https://openweathermap.org/img/wn/10d@2x.png"
+								src="https://openweathermap.org/img/wn/${icon}@2x.png"
 								alt="cloudy weather icon"
 							/>
-							<h3 class="weekday-max-temp">23º</h3>
+							<h3 class="weekday-max-temp">${maxTemp}º</h3>
 
-							<h4 class="weekday-min-temp">17º</h4>
+							<h4 class="weekday-min-temp">${minTemp}º</h4>
 					
 					</div>`;
     })
@@ -94,7 +118,7 @@ function displayForecast(response) {
 function getForecast(coordinates) {
 
     let apiKey = "dc8dede1ef33bea8aaa397f04b2d3b55";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}`
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`
 
     axios.get(apiUrl).then(displayForecast);
 
@@ -160,6 +184,7 @@ function displayData(response) {
     });
 
     displayImage(icon);
+
     if (temperature < 0) {
         freezingTemperature()
     } else if (temperature <= 12 && temperature > 0) {
@@ -201,6 +226,14 @@ function getCurrentLocation(position) {
 
 let searchButton = document.querySelector("#search-button");
 searchButton.addEventListener("click", searchCity);
+
+let cityInput = document.querySelector("#city-input")
+cityInput.addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        searchCity();
+    }
+});
 
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", function () {
