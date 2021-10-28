@@ -62,62 +62,7 @@ function displayDate() {
 displayDate();
 
 
-function formatDay(timestamp) {
 
-    let date = new Date(timestamp * 1000);
-    let day = date.getDay();
-    let weekDays = [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-    ];
-
-    return weekDays[day]
-
-}
-
-function displayForecast(response) {
-    console.log(response.data.daily)
-    let forecastElement = document.querySelector("#forecast");
-
-    let forecastHTML = "";
-    let forecast = response.data.daily
-    forecast.shift();
-
-    forecast.forEach(function (forecastDay, index) {
-        let minTemp = Math.round(forecastDay.temp.min);
-        let maxTemp = Math.round(forecastDay.temp.max);
-        let icon = forecastDay.weather[0].icon;
-
-        forecastHTML = forecastHTML + `	
-						<div class="col">
-							<h5 class="week-day">${formatDay(forecastDay.dt)}</h5>
-							<img
-								class="weekday-temp-image"
-								src="https://openweathermap.org/img/wn/${icon}@2x.png"
-								alt="cloudy weather icon"
-							/>
-							<h3 class="weekday-max-temp">${maxTemp}º</h3>
-
-							<h4 class="weekday-min-temp">${minTemp}º</h4>
-					
-					</div>`;
-    })
-
-    forecastElement.innerHTML = forecastHTML;
-}
-
-function getForecast(coordinates) {
-
-    let apiKey = "dc8dede1ef33bea8aaa397f04b2d3b55";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`
-
-    axios.get(apiUrl).then(displayForecast);
-}
 
 
 function displayData(response) {
@@ -153,6 +98,7 @@ function displayData(response) {
 
     displayImage(icon);
 
+
     if (temperature < 0) {
         freezingTemperature()
     } else if (temperature <= 12 && temperature > 0) {
@@ -162,8 +108,6 @@ function displayData(response) {
     } else if (temperature > 25) {
         hotTemperature();
     }
-
-
 
 }
 
@@ -222,9 +166,76 @@ function displayInitialData(position) {
     axios.get(url).then(displayData);
 }
 
+function formatDay(timestamp) {
+
+    let date = new Date(timestamp * 1000);
+    let day = date.getDay();
+    let weekDays = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+    ];
+
+    return weekDays[day]
+
+}
+
+function displayForecast(response) {
+
+
+    console.log(response.data.daily)
+    let forecastElement = document.querySelector("#forecast");
+
+    let forecastHTML = "";
+    let forecast = response.data.daily
+    forecast.shift();
+
+    forecast.forEach(function (forecastDay) {
+        let minTemp = Math.round(forecastDay.temp.min);
+        let maxTemp = Math.round(forecastDay.temp.max);
+        let icon = forecastDay.weather[0].icon;
+
+        forecastHTML = forecastHTML + `	
+						<div class="col">
+							<h5 class="week-day">${formatDay(forecastDay.dt)}</h5>
+							<img
+								class="weekday-temp-image"
+								src="https://openweathermap.org/img/wn/${icon}@2x.png"
+								alt="cloudy weather icon"
+							/>
+							<h3 class="weekday-max-temp">${maxTemp}º</h3>
+
+							<h4 class="weekday-min-temp">${minTemp}º</h4>
+					
+					</div>`;
+
+
+    })
+
+    forecastElement.innerHTML = forecastHTML;
+
+
+
+
+
+}
+
+function getForecast(coordinates) {
+
+    let apiKey = "dc8dede1ef33bea8aaa397f04b2d3b55";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`
+
+    axios.get(apiUrl).then(displayForecast);
+}
+
 function hotTemperature() {
 
     document.body.style.background = "linear-gradient(120deg, #f6d365 0%, #fda085 100%)";
+    document.body.style.color = "#cd4545";
 
     ;
 
@@ -250,6 +261,8 @@ function hotTemperature() {
     h5.forEach(element => {
         element.style.color = "#cd4545";
     });
+
+
 
     let button = document.querySelectorAll(".button");
     button.forEach(element => {
@@ -280,7 +293,10 @@ function hotTemperature() {
 
 function mediumTemperature() {
 
+
     document.body.style.background = "linear-gradient(to top, #fff1eb 0%, #ace0f9 100%)";
+    document.body.style.color = "#404969";
+
 
 
     document.querySelector(".app-container").style.borderColor = "#404969";
@@ -296,15 +312,19 @@ function mediumTemperature() {
         element.style.color = "#404969";
     });
 
-    let h4 = document.querySelectorAll('h4');
+    let h4 = document.getElementsByName('h4');
     h4.forEach(element => {
         element.style.color = "#404969";
+        element.classList.add("color-medium");
     });
 
     let h5 = document.querySelectorAll('h5');
     h5.forEach(element => {
         element.style.color = "#404969";
     });
+
+
+
 
     let button = document.querySelectorAll(".button");
     button.forEach(element => {
@@ -338,6 +358,9 @@ function coldTemperature() {
     document.body.style.background = "linear-gradient(178deg, rgba(201, 234, 252, 0.51) 14.9%, rgba(139, 192, 216, 0.73) 80%)"
 
     document.querySelector(".app-container").style.borderColor = "#056fc5";
+    document.body.style.color = "#056fc5";
+
+
 
     let h2 = document.querySelectorAll('h2');
 
@@ -390,6 +413,7 @@ function coldTemperature() {
 function freezingTemperature() {
 
     document.body.style.background = "linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%)";
+    document.body.style.color = "#393e46";
 
     ;
 
@@ -448,5 +472,7 @@ function displayImage(icon) {
     image.src = `http://openweathermap.org/img/wn/${icon}@2x.png`
 
 }
+
+
 
 navigator.geolocation.getCurrentPosition(displayInitialData);
