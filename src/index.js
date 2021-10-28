@@ -138,7 +138,6 @@ function displayData(response) {
     let feelsLike = Math.round(response.data.main.feels_like);
     let wind = response.data.wind.speed;
     let humidity = Math.round(response.data.main.humidity);
-    let conditions = response.data.weather[0].main;
     let description = response.data.weather[0].description;
     let icon = response.data.weather[0].icon;
 
@@ -151,6 +150,7 @@ function displayData(response) {
 
 
     //Data display// 
+
 
     cityDisplayed.innerHTML = cityName;
     temperatureDisplayed.innerHTML = `${temperature}ºC`;
@@ -176,6 +176,8 @@ function displayData(response) {
         hotTemperature();
     }
 
+
+
 }
 
 function searchCity() {
@@ -184,9 +186,13 @@ function searchCity() {
     let apiKey = "dc8dede1ef33bea8aaa397f04b2d3b55";
 
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+
+
     if (!city) {
         alert("Please insert a City");
     } else {
+
         axios.get(url).then(displayData);
 
     }
