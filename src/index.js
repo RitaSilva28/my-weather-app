@@ -108,10 +108,6 @@ function displayForecast(response) {
 					</div>`;
     })
 
-
-
-
-
     forecastElement.innerHTML = forecastHTML;
 }
 
@@ -121,9 +117,6 @@ function getForecast(coordinates) {
     let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`
 
     axios.get(apiUrl).then(displayForecast);
-
-
-
 }
 
 
@@ -151,18 +144,12 @@ function displayData(response) {
 
     //Data display// 
 
-
     cityDisplayed.innerHTML = cityName;
     temperatureDisplayed.innerHTML = `${temperature}ºC`;
     feelsLikeDisplayed.innerHTML = `Feels like ${feelsLike}ºC`;
     windDisplayed.innerHTML = `Wind ${wind} km/h`;
     humidityDisplayed.innerHTML = `Humidity ${humidity}%`;
     conditionsDisplayed.innerHTML = `Current conditions: ${description.charAt(0).toUpperCase() + description.slice(1)}`;
-
-
-
-
-
 
     displayImage(icon);
 
@@ -187,8 +174,6 @@ function searchCity() {
 
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-
-
     if (!city) {
         alert("Please insert a City");
     } else {
@@ -196,8 +181,6 @@ function searchCity() {
         axios.get(url).then(displayData);
 
     }
-
-
 }
 
 function getCurrentLocation(position) {
@@ -227,6 +210,7 @@ currentLocationButton.addEventListener("click", function () {
     navigator.geolocation.getCurrentPosition(getCurrentLocation);
 });
 
+
 function displayInitialData(position) {
     let longitude = position.coords.longitude;
     let latitude = position.coords.latitude;
@@ -237,8 +221,6 @@ function displayInitialData(position) {
 
     axios.get(url).then(displayData);
 }
-
-
 
 function hotTemperature() {
 
@@ -292,14 +274,9 @@ function hotTemperature() {
     });
 
     document.querySelector("#city-input").style.borderColor = "#cd4545";
-
-
-
-
-
-
-
 }
+
+
 
 function mediumTemperature() {
 
@@ -353,7 +330,6 @@ function mediumTemperature() {
 
     document.querySelector("#city-input").style.borderColor = "#404969";
 }
-
 
 
 function coldTemperature() {
@@ -472,7 +448,5 @@ function displayImage(icon) {
     image.src = `http://openweathermap.org/img/wn/${icon}@2x.png`
 
 }
-
-
 
 navigator.geolocation.getCurrentPosition(displayInitialData);
