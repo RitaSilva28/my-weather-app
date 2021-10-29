@@ -212,16 +212,9 @@ function displayForecast(response) {
 							<h4 class="weekday-min-temp">${minTemp}º</h4>
 					
 					</div>`;
-
-
     })
 
     forecastElement.innerHTML = forecastHTML;
-
-
-
-
-
 }
 
 function getForecast(coordinates) {
@@ -236,33 +229,7 @@ function hotTemperature() {
 
     document.body.style.background = "linear-gradient(120deg, #f6d365 0%, #fda085 100%)";
     document.body.style.color = "#cd4545";
-
-    ;
-
     document.querySelector(".app-container").style.borderColor = "#cd4545";
-
-    let h2 = document.querySelectorAll('h2');
-
-    h2.forEach(element => {
-        element.style.color = "#cd4545";
-    });
-
-    let h3 = document.querySelectorAll('h3');
-    h3.forEach(element => {
-        element.style.color = "#cd4545";
-    });
-
-    let h4 = document.querySelectorAll('h4');
-    h4.forEach(element => {
-        element.style.color = "#fff";
-    });
-
-    let h5 = document.querySelectorAll('h5');
-    h5.forEach(element => {
-        element.style.color = "#cd4545";
-    });
-
-
 
     let button = document.querySelectorAll(".button");
     button.forEach(element => {
@@ -272,18 +239,13 @@ function hotTemperature() {
 
             event.target.style.color = "#cd4545";
             event.target.style.backgroundColor = "#fff";
-
-
         });
 
         element.addEventListener("mouseleave", function (event) {
 
             event.target.style.color = "#fff";
             event.target.style.backgroundColor = "#cd4545";
-
-
         });
-
     });
 
     document.querySelector("#city-input").style.borderColor = "#cd4545";
@@ -293,38 +255,9 @@ function hotTemperature() {
 
 function mediumTemperature() {
 
-
     document.body.style.background = "linear-gradient(to top, #fff1eb 0%, #ace0f9 100%)";
     document.body.style.color = "#404969";
-
-
-
     document.querySelector(".app-container").style.borderColor = "#404969";
-
-    let h2 = document.querySelectorAll('h2');
-
-    h2.forEach(element => {
-        element.style.color = "#404969";
-    });
-
-    let h3 = document.querySelectorAll('h3');
-    h3.forEach(element => {
-        element.style.color = "#404969";
-    });
-
-    let h4 = document.getElementsByName('h4');
-    h4.forEach(element => {
-        element.style.color = "#404969";
-        element.classList.add("color-medium");
-    });
-
-    let h5 = document.querySelectorAll('h5');
-    h5.forEach(element => {
-        element.style.color = "#404969";
-    });
-
-
-
 
     let button = document.querySelectorAll(".button");
     button.forEach(element => {
@@ -334,18 +267,13 @@ function mediumTemperature() {
 
             event.target.style.color = "#ff7f50";
             event.target.style.backgroundColor = "#fff";
-
-
         });
 
         element.addEventListener("mouseleave", function (event) {
 
             event.target.style.color = "#fff";
             event.target.style.backgroundColor = "#ff7f50";
-
-
         });
-
     });
 
     document.querySelector("#city-input").style.borderColor = "#404969";
@@ -354,34 +282,9 @@ function mediumTemperature() {
 
 function coldTemperature() {
 
-
     document.body.style.background = "linear-gradient(178deg, rgba(201, 234, 252, 0.51) 14.9%, rgba(139, 192, 216, 0.73) 80%)"
-
     document.querySelector(".app-container").style.borderColor = "#056fc5";
     document.body.style.color = "#056fc5";
-
-
-
-    let h2 = document.querySelectorAll('h2');
-
-    h2.forEach(element => {
-        element.style.color = "#056fc5";
-    });
-
-    let h3 = document.querySelectorAll('h3');
-    h3.forEach(element => {
-        element.style.color = "#056fc5";
-    });
-
-    let h4 = document.querySelectorAll('h4');
-    h4.forEach(element => {
-        element.style.color = "#056fc5";
-    });
-
-    let h5 = document.querySelectorAll('h5');
-    h5.forEach(element => {
-        element.style.color = "#056fc5";
-    });
 
     let button = document.querySelectorAll(".button");
     button.forEach(element => {
@@ -391,54 +294,22 @@ function coldTemperature() {
 
             event.target.style.color = "#056fc5";
             event.target.style.backgroundColor = "#fff";
-
-
         });
 
         element.addEventListener("mouseleave", function (event) {
 
             event.target.style.color = "#fff";
             event.target.style.backgroundColor = "#056fc5";
-
-
         });
-
     });
 
     document.querySelector("#city-input").style.borderColor = "#056fc5";
-
-
 }
 
 function freezingTemperature() {
-
     document.body.style.background = "linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%)";
     document.body.style.color = "#393e46";
-
-    ;
-
     document.querySelector(".app-container").style.borderColor = "#393e46";
-
-    let h2 = document.querySelectorAll('h2');
-
-    h2.forEach(element => {
-        element.style.color = "#393e46";
-    });
-
-    let h3 = document.querySelectorAll('h3');
-    h3.forEach(element => {
-        element.style.color = "#393e46";
-    });
-
-    let h4 = document.querySelectorAll('h4');
-    h4.forEach(element => {
-        element.style.color = "#929aab";
-    });
-
-    let h5 = document.querySelectorAll('h5');
-    h5.forEach(element => {
-        element.style.color = "#393e46";
-    });
 
     let button = document.querySelectorAll(".button");
     button.forEach(element => {
@@ -448,18 +319,13 @@ function freezingTemperature() {
 
             event.target.style.color = "#393e46";
             event.target.style.backgroundColor = "#fff";
-
-
         });
 
         element.addEventListener("mouseleave", function (event) {
 
             event.target.style.color = "#fff";
             event.target.style.backgroundColor = "#393e46";
-
-
         });
-
     });
 
     document.querySelector("#city-input").style.borderColor = "#393e46";
@@ -470,9 +336,5 @@ function displayImage(icon) {
 
     let image = document.querySelector("#current-weather-image");
     image.src = `http://openweathermap.org/img/wn/${icon}@2x.png`
-
 }
-
-
-
 navigator.geolocation.getCurrentPosition(displayInitialData);
