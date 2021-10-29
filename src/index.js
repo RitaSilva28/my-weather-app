@@ -92,7 +92,7 @@ function displayData(response) {
     cityDisplayed.innerHTML = cityName;
     temperatureDisplayed.innerHTML = `${temperature}ºC`;
     feelsLikeDisplayed.innerHTML = `Feels like ${feelsLike}ºC`;
-    windDisplayed.innerHTML = `Wind ${wind} km/h`;
+    windDisplayed.innerHTML = `Wind ${Math.round(wind*3.6)} km/h`;
     humidityDisplayed.innerHTML = `Humidity ${humidity}%`;
     conditionsDisplayed.innerHTML = `Current conditions: ${description.charAt(0).toUpperCase() + description.slice(1)}`;
 
